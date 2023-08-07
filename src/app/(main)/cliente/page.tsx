@@ -2,12 +2,11 @@
 import useModal from "@/lib/hooks/useModal";
 import { ClientePaginacao } from "@/lib/types/clientes";
 import { useSearchParams } from "next/navigation";
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AdicionarClienteModal from "./components/AdicionarClienteModal/AdicionarClienteModal";
 import TabelaClientes from "./components/TabelaClientes/TabelaClientes";
+import { ClientesContext } from "./context/ClientesContext";
 import "./style.css";
-
-export const ClientesContext = createContext(async () => {});
 
 export default function Page() {
   const modal = useModal();
