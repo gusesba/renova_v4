@@ -1,0 +1,19 @@
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.botaoPesquisa {
+  background-color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 30%;
+}
+
+.pesquisaAtivo {
+  background-color: #eee !important;
+}
