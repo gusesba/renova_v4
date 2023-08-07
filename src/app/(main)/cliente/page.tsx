@@ -23,7 +23,8 @@ export default function Page() {
       });
 
   useEffect(() => {
-    fetchClients();
+    const fetch = () => fetchClients();
+    fetch();
   }, []);
 
   if (isLoading) return <p>Loading...</p>;

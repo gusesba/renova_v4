@@ -1,7 +1,7 @@
 import { Form } from "@/lib/bootstrap";
 import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
-import { ClientesContext } from "../../page";
+import { ClientesContext } from "../../context/ClientesContext";
 
 export default function AdicionarClienteForm() {
   const [values, setValues] = useState({ nome: "", celular: "" });
