@@ -1,10 +1,12 @@
 import { Form } from "@/lib/bootstrap";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientesContext } from "../../page";
 
 export default function AdicionarClienteForm() {
   const [values, setValues] = useState({ nome: "", celular: "" });
   const router = useRouter();
+  const fetchClients = useContext(ClientesContext);
 
   const onChange = (e: any) => {
     setValues({
@@ -32,7 +34,7 @@ export default function AdicionarClienteForm() {
             console.log(data.error);
           } else {
             setValues({ nome: "", celular: "" });
-            router.refresh();
+            fetchClients();
           }
         });
     }

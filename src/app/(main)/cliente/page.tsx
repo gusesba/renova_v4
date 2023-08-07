@@ -2,23 +2,29 @@
 import useModal from "@/lib/hooks/useModal";
 import { ClientePaginacao } from "@/lib/types/clientes";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import AdicionarClienteModal from "./components/AdicionarClienteModal/AdicionarClienteModal";
 import TabelaClientes from "./components/TabelaClientes/TabelaClientes";
 import "./style.css";
+
+export const ClientesContext = createContext(async () => {});
+
 export default function Page() {
   const modal = useModal();
   const searchParams = useSearchParams();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<ClientePaginacao>();
 
-  useEffect(() => {
+  const fetchClients = () =>
     fetch(`/api/cliente?${searchParams}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
         setLoading(false);
       });
+
+  useEffect(() => {
+    fetchClients();
   }, []);
 
   if (isLoading) return <p>Loading...</p>;
@@ -26,8 +32,10 @@ export default function Page() {
 
   return (
     <main>
-      <AdicionarClienteModal {...modal} />
-      <TabelaClientes clientes={data.clientes} />
+      <ClientesContext.Provider value={fetchClients}>
+        <AdicionarClienteModal {...modal} />
+        <TabelaClientes clientes={data.clientes} />
+      </ClientesContext.Provider>
       <button onClick={modal.handleShow}>aaa</button>
     </main>
   );
