@@ -1,0 +1,54 @@
+.buttonHolder {
+  position: fixed;
+  bottom: 70px;
+  right: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonHolderInside {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  bottom: 50px;
+  position: absolute;
+  transition: all 0.2s;
+  width: 100px;
+  margin-left: -30px;
+  pointer-events: none;
+}
+
+.buttonHolder:hover .buttonHolderInside {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.buttonHolder:hover > button:first-child {
+  background-color: #ddd;
+}
+
+.buttonHolder button {
+  width: 40px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
+  transition: all 0.2s;
+}
+
+.buttonHolder button:hover {
+  background-color: #ddd;
+}
+
+.buttonHolderInside button {
+  position: absolute;
+  bottom: -50px;
+  margin-left: 30px;
+}
+
+.buttonHolder:hover .buttonHolderInside button {
+  position: relative;
+  bottom: 0;
+}
