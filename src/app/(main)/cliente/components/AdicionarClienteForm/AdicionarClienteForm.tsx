@@ -4,7 +4,7 @@ import { ClientesContext } from "../../context/ClientesContext";
 
 export default function AdicionarClienteForm() {
   const [values, setValues] = useState({ nome: "", celular: "" });
-  const fetchClients = useContext(ClientesContext);
+  const setRefreshPage = useContext(ClientesContext);
 
   const onChange = (e: any) => {
     setValues({
@@ -32,7 +32,7 @@ export default function AdicionarClienteForm() {
             console.log(data.error);
           } else {
             setValues({ nome: "", celular: "" });
-            fetchClients();
+            setRefreshPage((n: number) => n + 1);
           }
         });
     }
