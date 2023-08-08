@@ -15,7 +15,7 @@ export default function useClients() {
         setData(data);
         setLoading(false);
       });
-  }, [refreshPage]);
+  }, [refreshPage, searchParams]);
 
   return { data, setData, isLoading, setLoading, setRefreshPage };
 }
