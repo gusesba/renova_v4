@@ -1,4 +1,5 @@
 "use client";
+import { Delete } from "@/components/icones/icones";
 import "./style.css";
 
 export default function BotoesMenu({
@@ -10,6 +11,9 @@ export default function BotoesMenu({
     <div className="buttonHolder">
       <button>C</button>
       <div className="buttonHolderInside">
+        <button>
+          <Delete />
+        </button>
         <button onClick={adicionarCliente}>+</button>
       </div>
     </div>
