@@ -9,13 +9,20 @@ export default function useClients() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    let aux = false;
     setLoading(true);
     fetch(`/api/cliente?${searchParams}`)
       .then((res) => res.json())
       .then((data) => {
-        setData(data);
-        setLoading(false);
+        if (aux === false) {
+          setData(data);
+          setLoading(false);
+        }
       });
+
+    return () => {
+      aux = true;
+    };
   }, [refreshPage, searchParams]);
 
   return { data, setData, isLoading, setLoading, setRefreshPage };
