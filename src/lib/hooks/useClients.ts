@@ -9,6 +9,7 @@ export default function useClients() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    setLoading(true);
     fetch(`/api/cliente?${searchParams}`)
       .then((res) => res.json())
       .then((data) => {

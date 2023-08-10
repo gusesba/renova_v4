@@ -4,6 +4,7 @@ import useModal from "@/lib/hooks/useModal";
 import AdicionarClienteModal from "./components/AdicionarClienteModal/AdicionarClienteModal";
 import BotoesMenu from "./components/BotoesMenu/BotoesMenu";
 import TabelaClientes from "./components/TabelaClientes/TabelaClientes";
+import TableNavigation from "./components/TableNavigation/TableNavigation";
 import { ClientesContext } from "./context/ClientesContext";
 import "./style.css";
 
@@ -11,15 +12,21 @@ export default function Page() {
   const modal = useModal();
   const { data, isLoading, setRefreshPage } = useClients();
 
-  if (isLoading) return <p>Loading...</p>;
-  if (!data) return <p>Nenhum cliente encontrado</p>;
-
   return (
     <>
       <main>
         <ClientesContext.Provider value={setRefreshPage}>
           <AdicionarClienteModal {...modal} />
-          <TabelaClientes clientes={data.clientes} />
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : !data ? (
+            <p>Nenhum cliente encontrado</p>
+          ) : (
+            <>
+              <TabelaClientes clientes={data.clientes} />
+              <TableNavigation count={data.count} />
+            </>
+          )}
         </ClientesContext.Provider>
       </main>
 
