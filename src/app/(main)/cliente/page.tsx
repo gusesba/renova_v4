@@ -16,8 +16,8 @@ export default function Page() {
 
   return (
     <>
-      <main>
-        <ClientesContext.Provider value={{ setRefreshPage, ...selection }}>
+      <ClientesContext.Provider value={{ setRefreshPage, ...selection }}>
+        <main>
           <AdicionarClienteModal {...modal} />
           {isLoading ? (
             <p>Loading...</p>
@@ -29,10 +29,10 @@ export default function Page() {
               <TableNavigation count={data.count} />
             </>
           )}
-        </ClientesContext.Provider>
-      </main>
+        </main>
 
-      <BotoesMenu adicionarCliente={modal.handleShow} />
+        <BotoesMenu adicionarCliente={modal.handleShow} />
+      </ClientesContext.Provider>
     </>
   );
 }
