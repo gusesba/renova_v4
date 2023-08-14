@@ -13,7 +13,7 @@ export default function useSearch() {
   const [submit, setSubmit] = useState(false);
   const searchRef = useRef(search);
   const path = usePathname();
-  const router = useRouter();
+  const { push } = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function useSearch() {
   useEffect(() => {
     const keydown = (e: any) => {
       if (e.key !== "Enter") return;
-      router.push(`${path}?${new URLSearchParams(searchRef.current)}`);
+      push(`${path}?${new URLSearchParams(searchRef.current)}`);
     };
 
     if (submit) {
@@ -51,13 +51,15 @@ export default function useSearch() {
     return () => {
       document.removeEventListener("keydown", keydown);
     };
-  }, [submit]);
+  }, [submit, path, push]);
 
   useEffect(() => {
+    const search = { id: "", nome: "", celular: "" };
     search.id = searchParams.get("id") || "";
     search.nome = searchParams.get("nome") || "";
     search.celular = searchParams.get("celular") || "";
-  }, []);
+    setSearch(search);
+  }, [searchParams]);
 
   const handleSetSearch = (e: any) => {
     setSearch((previous) => {

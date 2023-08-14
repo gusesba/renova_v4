@@ -6,7 +6,6 @@ export default function useSelection() {
   const handleSelectionChange = (e: any, id: number) => {
     if (e.target.checked) setSelection((previous) => previous.concat([id]));
     else setSelection((previous) => previous.filter((_id) => _id !== id));
-    console.log(selection);
   };
 
   return { selection, setSelection, handleSelectionChange };

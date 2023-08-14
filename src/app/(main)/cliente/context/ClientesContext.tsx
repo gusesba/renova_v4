@@ -4,5 +4,5 @@ export const ClientesContext = createContext<{
   setRefreshPage: Dispatch<SetStateAction<number>>;
   selection: number[];
   setSelection: Dispatch<SetStateAction<number[]>>;
-  handleSelectionChange: (e: any, id: number) => void;
+  handleSelectionChange: (_e: any, _id: number) => void;
 }>(null!);
