@@ -4,7 +4,7 @@ import { ClientesContext } from "../../context/ClientesContext";
 
 export default function AdicionarClienteForm() {
   const [values, setValues] = useState({ nome: "", celular: "" });
-  const setRefreshPage = useContext(ClientesContext);
+  const { setRefreshPage } = useContext(ClientesContext);
 
   const onChange = (e: any) => {
     setValues({

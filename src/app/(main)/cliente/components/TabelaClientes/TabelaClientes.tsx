@@ -2,6 +2,8 @@
 import { FormCheck, Table } from "@/lib/bootstrap";
 import useSearch from "@/lib/hooks/useSearch";
 import { CLiente } from "@/lib/types/clientes";
+import { useContext } from "react";
+import { ClientesContext } from "../../context/ClientesContext";
 import "./style.css";
 
 export default function TabelaClientes({ clientes }: { clientes: CLiente[] }) {
@@ -12,6 +14,9 @@ export default function TabelaClientes({ clientes }: { clientes: CLiente[] }) {
     handleMouseLeave,
     handleMouseOver,
   } = useSearch();
+
+  const { selection, setSelection, handleSelectionChange } =
+    useContext(ClientesContext);
 
   return (
     <Table bordered hover>
@@ -92,7 +97,12 @@ export default function TabelaClientes({ clientes }: { clientes: CLiente[] }) {
         {clientes.map((cliente) => (
           <tr key={cliente.id}>
             <td>
-              <FormCheck />
+              <FormCheck
+                checked={
+                  selection.find((id) => id === cliente.id) ? true : false
+                }
+                onChange={(e) => handleSelectionChange(e, cliente.id)}
+              />
             </td>
             <td
               id="id"
