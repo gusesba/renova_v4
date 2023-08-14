@@ -17,6 +17,9 @@ export default function useClients() {
       .then((data) => {
         setData(data);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     return () => {
